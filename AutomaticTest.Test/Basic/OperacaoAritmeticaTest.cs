@@ -1,7 +1,7 @@
 using AutomaticTest.Model.Entities;
 using AutomaticTest.Model.Enums;
 
-namespace AutomaticTest.Test
+namespace AutomaticTest.Test.Basic
 {
     public class OperacaoAritmeticaTest
     {
