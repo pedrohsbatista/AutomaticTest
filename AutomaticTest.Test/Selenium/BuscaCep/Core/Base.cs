@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
 
-namespace AutomaticTest.Test.Selenium.BuscaCep
+namespace AutomaticTest.Test.Selenium.BuscaCep.Core
 {
-    public class BuscaCepBase
+    public class Base : DSL
     {
-        protected IWebDriver WebDriver;
-        protected bool Quit = true;
 
         [SetUp]
         public void Start()
