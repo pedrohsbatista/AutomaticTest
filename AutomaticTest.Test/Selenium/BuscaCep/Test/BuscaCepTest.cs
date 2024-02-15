@@ -9,8 +9,7 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Test
         {
             WriteById("endereco", "15085-350");
             Click("btn_pesquisar");
-            Contains("//*[@id=\"resultado-DNEC\"]/tbody/tr/td[1]", "Avenida José Munia - até 5801 - lado ímpar");            
-            Quit = false;
+            Contains("//*[@id=\"resultado-DNEC\"]/tbody/tr/td[1]", "Avenida José Munia - até 5801 - lado ímpar");
         }
     }
 }

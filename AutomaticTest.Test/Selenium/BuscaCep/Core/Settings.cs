@@ -5,6 +5,8 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Core
     public class Settings
     {
         protected IWebDriver WebDriver;
-        protected bool Quit = true;
+        //Desativado agora olha para propriedade HeadlessMode para verificar se fecha ou não o navegador
+        //protected bool Quit = true;
+        protected bool HeadlessMode = false;
     }
 }
