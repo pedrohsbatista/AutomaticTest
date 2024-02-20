@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 
-namespace AutomaticTest.Test.Selenium.BuscaCep.Core
+namespace AutomaticTest.Test.Selenium
 {
     public static class ChromeOptionsHelper
     {
@@ -8,17 +8,17 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Core
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArguments(headlessMode ? GetHeadlessMode() : GetDevMode());
-            return chromeOptions;            
+            return chromeOptions;
         }
 
         private static string[] GetHeadlessMode()
         {
-           return new string[] { "window-size=1366x768", "disk-cache-size=0", "headless"};
+            return new string[] { "window-size=1366x768", "disk-cache-size=0", "headless" };
         }
 
         private static string[] GetDevMode()
         {
-            return new string[] { "disk-cache-size=0", "start-maximized" };     
+            return new string[] { "disk-cache-size=0", "start-maximized" };
         }
     }
 }

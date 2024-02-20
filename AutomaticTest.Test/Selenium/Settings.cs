@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace AutomaticTest.Test.Selenium.BuscaCep.Core
+namespace AutomaticTest.Test.Selenium
 {
     public class Settings
     {
