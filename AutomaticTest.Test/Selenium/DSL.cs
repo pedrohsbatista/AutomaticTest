@@ -27,17 +27,9 @@ namespace AutomaticTest.Test.Selenium
 
         public bool ExistElement(string xPath)
         {
-            try
-            {
-                WebDriver.FindElement(By.XPath(xPath));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
+            var elements = WebDriver.FindElements(By.XPath(xPath));
+            return elements.Count > 0;
         }
-
 
         #endregion
 
@@ -52,12 +44,22 @@ namespace AutomaticTest.Test.Selenium
             WebDriver.FindElement(By.Id(id)).SendKeys(value);
         }
 
-        public void Click(string xPath)
+        public void ClickById(string xPath)
         {
             WebDriver.FindElement(By.Id(xPath)).Click();
         }
 
+        public void ClickByXPath(string xPath)
+        {
+            WebDriver.FindElement(By.XPath(xPath)).Click();
+        }
+
         public void Contains(string xPath, string value)
+        {
+            Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Contains(value), Is.True);
+        }
+
+        public void Equals(string xPath, string value)
         {
             Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Equals(value), Is.True);
         }
