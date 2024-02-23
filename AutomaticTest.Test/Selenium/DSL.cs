@@ -68,6 +68,14 @@ namespace AutomaticTest.Test.Selenium
 
         #region Métodos de atribuição
 
+        public static string GenerateNome()
+        {
+            var random = new Random();
+            var nomes = new string[] { "Nome A", "Nome B", "Nome C", "Nome D", "Nome E" };
+            var sobrenomes = new string[] { "Sobrenome A", "Sobrenome B", "Sobrenome C", "Sobrenome D", "Sobrenome E", "Sobrenome F" };
+            return $"{nomes[random.Next(nomes.Length)]} {sobrenomes[random.Next(sobrenomes.Length)]}";
+        }
+
         #endregion
     }
 }
