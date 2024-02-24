@@ -34,5 +34,15 @@
             result = GenerateDataNascimento(18, 60, "dd/MM/yyyy");
             Console.WriteLine(result);
         }
+
+        [Test]
+        public void GerarTelefoneCelular()
+        {
+            var result = GenerateTelefoneCelular();
+            Console.WriteLine(result);
+
+            result = GenerateTelefoneCelular(true);
+            Console.WriteLine(result);
+        }
     }
 }

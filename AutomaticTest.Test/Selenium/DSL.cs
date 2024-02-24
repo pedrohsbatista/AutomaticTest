@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V119.DeviceOrientation;
 using OpenQA.Selenium.Support.UI;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ namespace AutomaticTest.Test.Selenium
         private readonly static string[] _dominios = new string[] { "gmail.com", "outlook.com", "uol.com.br", "terra.com.br", "hostinger.com" };
         private readonly static string[] _nomes = new string[] { "Nome A", "Nome B", "Nome C", "Nome D", "Nome E" };
         private readonly static string[] _sobrenomes = new string[] { "Sobrenome A", "Sobrenome B", "Sobrenome C", "Sobrenome D", "Sobrenome E", "Sobrenome F" };
+        private readonly static string[] _ddds = new string[] { "11", "12", "13", "14", "15", "16", "17", "18", "19", "21", "22", "24", "27", "28", "31", "32", "33", "34", "35", "37", "38", "41", "42", "43", "44", "45", "46", "47", "48", "49", "51", "53", "54", "55", "61", "62", "64", "65", "66", "67", "68", "69", "71", "73", "74", "75", "77", "79", "81", "82", "83", "84", "85", "86", "87", "88", "89", "91", "92", "93", "94", "95", "96", "97", "98", "99" };
 
         #region Métodos de manipulação
 
@@ -126,6 +128,24 @@ namespace AutomaticTest.Test.Selenium
             } while (!ok);
 
             return result.ToString(formatoSaida);
+        }
+
+        public static string GenerateTelefoneCelular(bool comMascara = false)
+        {
+            var random = new Random();
+            var ddd = random.Next(_ddds.Length);
+            var primeiroDigito = random.Next(5, 9);
+            string restoNumero = null;
+                
+            for (var i = 0;  i < 7; i++)
+                restoNumero += random.Next(0, 9);
+
+            var result = $"{ddd}9{primeiroDigito}{restoNumero}";
+
+            if (!comMascara)
+                return result;
+
+            return string.Format("{0:(##) #####-####}", long.Parse(result));
         }
     }
 }
