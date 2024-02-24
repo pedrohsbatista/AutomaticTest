@@ -1,10 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AutomaticTest.Test.Selenium
 {
     public class DSL : Settings
     {
+        private readonly static string[] _dominios = new string[] { "gmail.com", "outlook.com", "uol.com.br", "terra.com.br", "hostinger.com" };
+        private readonly static string[] _nomes = new string[] { "Nome A", "Nome B", "Nome C", "Nome D", "Nome E" };
+        private readonly static string[] _sobrenomes = new string[] { "Sobrenome A", "Sobrenome B", "Sobrenome C", "Sobrenome D", "Sobrenome E", "Sobrenome F" };
+
         #region Métodos de manipulação
 
         public static void Wait(int milliseconds) => Thread.Sleep(milliseconds);
@@ -70,12 +76,56 @@ namespace AutomaticTest.Test.Selenium
 
         public static string GenerateNome()
         {
-            var random = new Random();
-            var nomes = new string[] { "Nome A", "Nome B", "Nome C", "Nome D", "Nome E" };
-            var sobrenomes = new string[] { "Sobrenome A", "Sobrenome B", "Sobrenome C", "Sobrenome D", "Sobrenome E", "Sobrenome F" };
-            return $"{nomes[random.Next(nomes.Length)]} {sobrenomes[random.Next(sobrenomes.Length)]}";
+            var random = new Random();            
+            return $"{_nomes[random.Next(_nomes.Length)]}";
         }
 
         #endregion
+
+        public static string GenerateSobrenome()
+        {
+            var random = new Random();
+            return $"{_sobrenomes[random.Next(_sobrenomes.Length)]}";
+
+        }
+
+        public static string GenerateNomeSobrenome()
+        {           
+            return $"{GenerateNome()} {GenerateSobrenome()}";
+        }
+
+        public static string GenerateEmail(string endereco = null)
+        {
+            var random = new Random();
+
+            if (string.IsNullOrEmpty(endereco))
+                endereco = Regex.Replace($"{GenerateNome()}.{GenerateSobrenome()}", @"\s", "").ToLower();
+
+            return $"{endereco}@{_dominios[random.Next(_dominios.Length)]}";
+        }
+
+        public static string GenerateDataNascimento(int idadaMinima = 0, int idadeMaxima = 80, string formatoSaida = "ddMMyyyy")
+        {
+            DateTime result;
+            var random = new Random();
+            var dia = random.Next(1, 31).ToString().PadLeft(2, '0');
+            var mes = random.Next(1, 12).ToString().PadLeft(2, '0');
+            var ano = random.Next(DateTime.Now.AddYears(-idadeMaxima).Year, DateTime.Now.AddYears(-idadaMinima).Year);
+
+            var dataNascimentoString = $"{dia}{mes}{ano}";           
+
+            bool ok;
+            do
+            {
+               ok = DateTime.TryParseExact(dataNascimentoString, "ddMMyyyy", null, DateTimeStyles.None, out result);
+
+                if (!ok)
+                    continue;
+               if (result < DateTime.Now.AddYears(-idadeMaxima).Date || result > DateTime.Now.AddYears(-idadaMinima).Date)
+                    ok = false;                  
+            } while (!ok);
+
+            return result.ToString(formatoSaida);
+        }
     }
 }
