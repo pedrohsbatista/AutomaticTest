@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	div(class="d-flex justify-content-center")
+		form(class="w-50" method="post")
+			div(class="row")
+				div(class="col-12")
+					label(for="nome" class="form-label") Nome:
+					input(type="text" class="form-control" id="nome")   
+			div(class="row")
+				div(class="col-12")
+					label(for="email" class="form-label") Email:
+					input(type="email" class="form-control" id="email")   
+			div(class="row")
+				div(class="col-12")
+					label(for="dataNascimento" class="form-label") Data Nascimento:
+					input(type="date" class="form-control" id="dataNascimento")  
+			div(class="row")
+				div(class="col-12")
+					label(for="telefoneCelular" class="form-label") Celular:
+					input(type="tel" class="form-control" id="telefoneCelular")   
+			div(class="d-flex justify-content-center my-2")
+				a(type="button" class="btn btn-light me-2" href="/clientes") Voltar
+				button(type="submit" class="btn btn-primary") Cadastrar

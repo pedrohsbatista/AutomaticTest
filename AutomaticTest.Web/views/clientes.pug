@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    div(class="d-flex d-inline w-100")
+        div(class="d-flex justify-content-start w-50")
+            h1 Clientes
+        div(class="d-flex justify-content-end align-items-end w-50")
+            a(type="button" class="btn btn-primary" href="/cliente") Adicionar
+    table(class="table")
+      thead
+        tr
+          th(scope="col") Nome  
+      tbody
+        tr
+          td Teste     

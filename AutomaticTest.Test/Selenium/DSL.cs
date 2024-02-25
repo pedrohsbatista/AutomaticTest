@@ -80,9 +80,7 @@ namespace AutomaticTest.Test.Selenium
         {
             var random = new Random();            
             return $"{_nomes[random.Next(_nomes.Length)]}";
-        }
-
-        #endregion
+        }     
 
         public static string GenerateSobrenome()
         {
@@ -147,5 +145,6 @@ namespace AutomaticTest.Test.Selenium
 
             return string.Format("{0:(##) #####-####}", long.Parse(result));
         }
+        #endregion
     }
 }

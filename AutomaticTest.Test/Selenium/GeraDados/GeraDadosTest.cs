@@ -1,6 +1,6 @@
 ﻿namespace AutomaticTest.Test.Selenium.GerarDados
 {
-    public class GerarDadosTest : DSL
+    public class GeraDadosTest : DSL
     {
         [Test]
         public void GerarNome()

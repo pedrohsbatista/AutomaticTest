@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticTest.Model", "AutomaticTest.Model\AutomaticTest.Model.csproj", "{AE65A342-5CAE-473D-88DA-C31578163B0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomaticTest.Model", "AutomaticTest.Model\AutomaticTest.Model.csproj", "{AE65A342-5CAE-473D-88DA-C31578163B0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticTest.Test", "AutomaticTest.Test\AutomaticTest.Test.csproj", "{A3825A91-4B89-4786-A499-A4D82C11D49A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomaticTest.Test", "AutomaticTest.Test\AutomaticTest.Test.csproj", "{A3825A91-4B89-4786-A499-A4D82C11D49A}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AutomaticTest.Web", "AutomaticTest.Web\AutomaticTest.Web.esproj", "{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{A3825A91-4B89-4786-A499-A4D82C11D49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3825A91-4B89-4786-A499-A4D82C11D49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3825A91-4B89-4786-A499-A4D82C11D49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5F93D2-9258-49F1-ADEE-EE5592DCE57E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
