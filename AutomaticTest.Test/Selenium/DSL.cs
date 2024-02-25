@@ -42,34 +42,126 @@ namespace AutomaticTest.Test.Selenium
         #endregion
 
         #region Métodos de interação
-        public void WriteByXPath(string xPath, string value)
+        public void WriteByXPath(string xPath, string value, string description = null)
         {
-            WebDriver.FindElement(By.XPath(xPath)).SendKeys(value);
+            bool ok = true;
+            try
+            {
+                WebDriver.FindElement(By.XPath(xPath)).SendKeys(value);
+            }
+            catch (Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Escreveu no {description} o valor {value}"));
+            }
         }
 
-        public void WriteById(string id, string value)
+        public void WriteById(string id, string value, string description = null)
         {
-            WebDriver.FindElement(By.Id(id)).SendKeys(value);
+            bool ok = true;
+            try
+            {
+                WebDriver.FindElement(By.Id(id)).SendKeys(value);                
+            }
+            catch (Exception) 
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Escreveu no {description} o valor {value}"));
+            }
         }
 
-        public void ClickById(string xPath)
+        public void ClickById(string xPath, string description = null)
         {
-            WebDriver.FindElement(By.Id(xPath)).Click();
+            bool ok = true;
+            try
+            {
+                WebDriver.FindElement(By.Id(xPath)).Click();
+            }
+            catch(Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Clicou em {description}"));
+            }
         }
 
-        public void ClickByXPath(string xPath)
+        public void ClickByXPath(string xPath, string description = null)
         {
-            WebDriver.FindElement(By.XPath(xPath)).Click();
+            bool ok = true;
+            try
+            {
+                WebDriver.FindElement(By.XPath(xPath)).Click();
+            }
+            catch (Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Clicou em {description}"));
+            }            
         }
 
-        public void Contains(string xPath, string value)
+        public void Contains(string xPath, string value, string description = null)
         {
-            Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Contains(value), Is.True);
+            bool ok = true;
+            try
+            {
+                Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Contains(value), Is.True);
+            }
+            catch (Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Verificou em {description} se continha o valor {value}"));
+            }            
         }
 
-        public void Equals(string xPath, string value)
+        public void Equals(string xPath, string value, string description = null)
         {
-            Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Equals(value), Is.True);
+            bool ok = true;
+            try
+            {
+                Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Equals(value), Is.True);
+            }
+            catch (Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Verificou em {description} se o valor era igual a {value}"));
+            }            
+        }
+
+        private string GetDescription(bool ok, string description)
+        {
+            if (ok)
+                return description;
+
+            return $"Erro: {description}";
         }
 
         #endregion
@@ -145,6 +237,6 @@ namespace AutomaticTest.Test.Selenium
 
             return string.Format("{0:(##) #####-####}", long.Parse(result));
         }
-        #endregion
+        #endregion        
     }
 }

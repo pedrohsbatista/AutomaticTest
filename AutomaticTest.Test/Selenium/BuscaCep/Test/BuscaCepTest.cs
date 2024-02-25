@@ -7,9 +7,9 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Test
         [Test]
         public void BuscarCep()
         {
-            WriteById("endereco", "15085-350");
-            ClickById("btn_pesquisar");
-            Contains("//*[@id=\"resultado-DNEC\"]/tbody/tr/td[1]", "Avenida José Munia");
+            WriteById("endereco", "15085-350", "CEP");
+            ClickById("btn_pesquisar", "pesquisar");
+            Contains("//*[@id=\"resultado-DNEC\"]/tbody/tr/td[1]", "Avenida José Munia", "resultado");
         }
 
         [Test]
@@ -77,12 +77,12 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Test
                 }
             };
 
-            var index = 0;
+            var index = 1;
 
             foreach(var cep in ceps) 
             {
-                WriteByXPath("//*[@id=\"endereco\"]", cep.Key);
-                ClickByXPath("//*[@id=\"btn_pesquisar\"]");
+                WriteByXPath("//*[@id=\"endereco\"]", cep.Key, "CEP");
+                ClickByXPath("//*[@id=\"btn_pesquisar\"]", "pesquisar");
 
                 for (short i = 1; i <= 4; i++)
                 {
@@ -91,24 +91,25 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Test
                     if (i == 1 && ExistElement($"{xPath}/a"))
                         xPath += "/a";
 
-                    Equals(xPath, GetProperty(i, cep.Value));                    
+                    var (column, value) = ((string, string)) GetProperty(i, cep.Value);
+                    Equals(xPath, value, $"coluna {column.ToLower()}");                    
                 };                 
 
                 if (index < ceps.Count)
-                    ClickByXPath("//*[@id=\"btn_nbusca\"]");
+                    ClickByXPath("//*[@id=\"btn_nbusca\"]", "nova busca");
 
                 index++;
             }
         }
 
-        private string GetProperty(short index, dynamic obj)
+        private (string, string) GetProperty(short index, dynamic obj)
         {
             return index switch
             {
-                1 => obj.Logradouro,
-                2 => obj.Bairro,
-                3 => obj.Municipio,
-                4 => obj.Cep,
+                1 => (nameof(obj.Logradouro), obj.Logradouro),
+                2 => (nameof(obj.Bairro), obj.Bairro),
+                3 => (nameof(obj.Municipio), obj.Municipio),
+                4 => (nameof(obj.Cep), obj.Cep)
             };
         }
     }
