@@ -102,6 +102,29 @@ namespace AutomaticTest.Test.Selenium.BuscaCep.Test
             }
         }
 
+        [Test]
+        public void BuscarCepComTipoCep()
+        {
+            WriteByXPath("//input[@id=\"endereco\"]", "15085-350", "CEP");            
+            SelectItemMenuDropDownByXPath("//select[@id=\"tipoCEP\"]", "Grande Usuário", "tipo do CEP");            
+            ClickByXPath("//button[@id=\"btn_pesquisar\"]", "pesquisar");            
+        }
+
+        [Test]
+        public void ValidarOpcoesSelectTipoCep()
+        {
+            var options = new string[]
+            {
+               "Localidade/Logradouro",
+               "CEP Promocional",
+               "Caixa Postal Comunitária",
+               "Grande Usuário",
+               "Unidade Operacional",               
+               "Todos"               
+            };
+            ValidateItensSelectMenuDropDown("//select[@id=\"tipoCEP\"]", options, "tipo do CEP");
+        }
+
         private (string, string) GetProperty(short index, dynamic obj)
         {
             return index switch

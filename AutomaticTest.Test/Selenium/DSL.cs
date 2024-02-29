@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V119.DeviceOrientation;
 using OpenQA.Selenium.Support.UI;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -153,6 +152,51 @@ namespace AutomaticTest.Test.Selenium
             {
                 if (!string.IsNullOrEmpty(description))
                     Console.WriteLine(GetDescription(ok, $"Verificou em {description} se o valor era igual a {value}"));
+            }            
+        }
+
+        public void SelectItemMenuDropDownByXPath(string xPath, string value, string description = null)
+        {
+            bool ok = true;
+            try
+            {
+                WebDriver.FindElement(By.XPath(xPath)).Click();
+                WebDriver.FindElement(By.XPath($"{xPath}/optgroup/option[text()=\"{value}\"]")).Click();
+                ClickOut();
+            }
+            catch (Exception)
+            {
+                ok = false;
+                Assert.Fail();
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(description))
+                    Console.WriteLine(GetDescription(ok, $"Selecionou em {description} o valor {value}"));
+            }
+        }
+
+        public void ValidateItensSelectMenuDropDown(string xPath, string[] values, string description = null)
+        {            
+            for (var i = 0; i < values.Length; i++)
+            {
+                bool ok = true;
+                try
+                {
+                    ClickByXPath(xPath);                    
+                    ClickByXPath($"{xPath}/optgroup/option[text()=\"{values[i]}\"]");                    
+                    ClickOut();                    
+                }
+                catch (Exception)
+                {
+                    ok = false;
+                    Assert.Fail();
+                }
+                finally
+                {
+                    if (!string.IsNullOrEmpty(description))
+                        Console.WriteLine(GetDescription(ok, $"Validou em {description} se continha o valor {values[i]}"));
+                }
             }            
         }
 
