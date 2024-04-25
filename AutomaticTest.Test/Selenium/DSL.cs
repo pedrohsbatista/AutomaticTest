@@ -48,10 +48,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 WebDriver.FindElement(By.XPath(xPath)).SendKeys(value);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -67,10 +67,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 WebDriver.FindElement(By.Id(id)).SendKeys(value);                
             }
-            catch (Exception) 
+            catch (Exception ex) 
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -86,10 +86,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 WebDriver.FindElement(By.Id(xPath)).Click();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -105,10 +105,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 WebDriver.FindElement(By.XPath(xPath)).Click();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -124,10 +124,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Contains(value), Is.True);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -143,10 +143,10 @@ namespace AutomaticTest.Test.Selenium
             {
                 Assert.That(WebDriver.FindElement(By.XPath(xPath)).Text.Equals(value), Is.True);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -164,10 +164,10 @@ namespace AutomaticTest.Test.Selenium
                 WebDriver.FindElement(By.XPath($"{xPath}/optgroup/option[text()=\"{value}\"]")).Click();
                 ClickOut();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ok = false;
-                Assert.Fail();
+                ok = false;                
+                Assert.Fail(ex.Message);
             }
             finally
             {
@@ -187,10 +187,10 @@ namespace AutomaticTest.Test.Selenium
                     ClickByXPath($"{xPath}/optgroup/option[text()=\"{values[i]}\"]");                    
                     ClickOut();                    
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    ok = false;
-                    Assert.Fail();
+                    ok = false;                    
+                    Assert.Fail(ex.Message);
                 }
                 finally
                 {
