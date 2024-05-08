@@ -1,8 +1,8 @@
-﻿using AutomaticTest.Test.Selenium.CadastraCliente.Core;
+﻿using AutomaticTest.Test.Selenium.AutomaticTestWeb.Core;
 
-namespace AutomaticTest.Test.Selenium.CadastraCliente.Test
+namespace AutomaticTest.Test.Selenium.AutomaticTestWeb.Test
 {
-    public class CadastraClientTest : Base
+    public class CrudClienteTest : Base
     {
         [Test]
         public void CadastraCliente()
@@ -31,6 +31,15 @@ namespace AutomaticTest.Test.Selenium.CadastraCliente.Test
             WriteByXPath("//input[@id=\"telefoneCelular\"]", GenerateTelefoneCelular(true));
             Wait(2000);
             ClickByXPath("//button[@type=\"submit\"]");
+        }
+
+        [Test]
+        public void ConsultaClientes()
+        {
+            WaitElementGone("//*[@id=\"loading\"]", 5000);
+            CadastraCliente();                       
+            WaitElement("//tbody/tr", 5000);
+            ClickByXPath("//tbody/tr/td[5]/button[1]", "editar");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 
-namespace AutomaticTest.Test.Selenium.CadastraCliente.Core
+namespace AutomaticTest.Test.Selenium.AutomaticTestWeb.Core
 {
     public class Base : DSL
     {

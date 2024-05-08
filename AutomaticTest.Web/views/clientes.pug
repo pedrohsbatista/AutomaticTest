@@ -1,6 +1,9 @@
 extends layout
 
 block content
+    div(id="loading" class="w-100 h-50 d-flex justify-content-center align-items-center position-absolute bg-white opacity-75")
+        div(class="spinner-grow text-dark" style="width: 5rem;height: 5rem")
+            span(class="visually-hidden")
     div(class="d-flex d-inline w-100")
         div(class="d-flex justify-content-start w-50")
             h1 Clientes
